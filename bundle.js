@@ -21463,11 +21463,7 @@
 	  _createClass(App, [{
 	    key: "render",
 	    value: function render() {
-	      return _react2.default.createElement(
-	        "div",
-	        null,
-	        "Hello World"
-	      );
+	      return _react2.default.createElement("div", null);
 	    }
 	  }]);
 
