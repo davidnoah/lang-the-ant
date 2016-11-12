@@ -10,14 +10,10 @@ class Grid extends React.Component {
     let rows = [];
     for (var i = 0; i < 100; i++) {
       rows.push(<div className='row' key={"row " + i}>
-        this.renderTiles(i);
+        {this.renderTiles(i)}
       </div>);
     }
-    return (
-      <div className='row-container'>
-        {rows}
-      </div>
-    );
+    return rows;
   }
 
   renderTiles(row) {
@@ -30,7 +26,7 @@ class Grid extends React.Component {
 
   render() {
     return (
-      <div className='grid-container'>
+      <div className='grid'>
         {this.renderRows()}
       </div>
     );
