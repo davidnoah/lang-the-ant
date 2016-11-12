@@ -21461,13 +21461,16 @@
 	  function App(props) {
 	    _classCallCheck(this, App);
 
-	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+	    _this.board = new Board();
+	    return _this;
 	  }
 
 	  _createClass(App, [{
 	    key: "render",
 	    value: function render() {
-	      return _react2.default.createElement(_grid2.default, null);
+	      return _react2.default.createElement(_grid2.default, { board: this.board });
 	    }
 	  }]);
 
@@ -21510,6 +21513,9 @@
 	  }
 
 	  _createClass(Grid, [{
+	    key: "placeAnt",
+	    value: function placeAnt() {}
+	  }, {
 	    key: "renderRows",
 	    value: function renderRows() {
 	      var rows = [];
@@ -21527,7 +21533,7 @@
 	    value: function renderTiles(row) {
 	      var tiles = [];
 	      for (var i = 0; i < 100; i++) {
-	        tiles.push(_react2.default.createElement(_tile2.default, { key: "tile " + (i + row) }));
+	        tiles.push(_react2.default.createElement(_tile2.default, { active: this.props.board.grid[row][i], key: "tile " + (i + row) }));
 	      }
 	      return tiles;
 	    }
@@ -21536,7 +21542,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        "div",
-	        { className: "grid" },
+	        { className: "grid", onClick: this.placeAnt },
 	        this.renderRows()
 	      );
 	    }
@@ -21573,13 +21579,21 @@
 	  function Tile(props) {
 	    _classCallCheck(this, Tile);
 
-	    return _possibleConstructorReturn(this, (Tile.__proto__ || Object.getPrototypeOf(Tile)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (Tile.__proto__ || Object.getPrototypeOf(Tile)).call(this, props));
+
+	    _this.style = { backgroundColor: "black" };
+	    return _this;
 	  }
 
 	  _createClass(Tile, [{
 	    key: "render",
 	    value: function render() {
-	      return _react2.default.createElement("div", { className: "tile" });
+	      if (this.props.active) {
+	        this.style.backgroundColor = "white";
+	      } else {
+	        this.style.backgroundColor = "black";
+	      }
+	      return _react2.default.createElement("div", { className: "tile", style: this.style });
 	    }
 	  }]);
 

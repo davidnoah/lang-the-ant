@@ -6,6 +6,10 @@ class Grid extends React.Component {
     super(props);
   }
 
+  placeAnt() {
+
+  }
+
   renderRows() {
     let rows = [];
     for (var i = 0; i < 100; i++) {
@@ -19,14 +23,14 @@ class Grid extends React.Component {
   renderTiles(row) {
     let tiles = [];
     for (var i = 0; i < 100; i++) {
-      tiles.push(<Tile key={"tile " + (i + row)}/>);
+      tiles.push(<Tile active={this.props.board.grid[row][i]} key={"tile " + (i + row)}/>);
     }
     return tiles;
   }
 
   render() {
     return (
-      <div className='grid'>
+      <div className='grid' onClick={this.placeAnt}>
         {this.renderRows()}
       </div>
     );

@@ -4,11 +4,12 @@ import Grid from "./grid";
 class App extends React.Component{
   constructor(props) {
     super(props);
+    this.board = new Board();
   }
 
   render() {
     return (
-      <Grid />
+      <Grid board={this.board}/>
     );
   }
 }
