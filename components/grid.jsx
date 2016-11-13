@@ -1,13 +1,19 @@
 import React from "react";
 import Tile from "./tile";
+import Board from "../langstonsAnt";
 
 class Grid extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {board: new Board()};
   }
 
-  placeAnt() {
+  placeAnt(e) {
 
+  }
+
+  updateGame() {
+    this.setState({ board: this.state.board });
   }
 
   renderRows() {

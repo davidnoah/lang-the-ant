@@ -21461,16 +21461,13 @@
 	  function App(props) {
 	    _classCallCheck(this, App);
 
-	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
-
-	    _this.board = new Board();
-	    return _this;
+	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 	  }
 
 	  _createClass(App, [{
 	    key: "render",
 	    value: function render() {
-	      return _react2.default.createElement(_grid2.default, { board: this.board });
+	      return _react2.default.createElement(_grid2.default, null);
 	    }
 	  }]);
 
@@ -21495,6 +21492,10 @@
 
 	var _tile2 = _interopRequireDefault(_tile);
 
+	var _langstonsAnt = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../langstonsAnt\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _langstonsAnt2 = _interopRequireDefault(_langstonsAnt);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21509,12 +21510,20 @@
 	  function Grid(props) {
 	    _classCallCheck(this, Grid);
 
-	    return _possibleConstructorReturn(this, (Grid.__proto__ || Object.getPrototypeOf(Grid)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (Grid.__proto__ || Object.getPrototypeOf(Grid)).call(this, props));
+
+	    _this.state = { board: new _langstonsAnt2.default() };
+	    return _this;
 	  }
 
 	  _createClass(Grid, [{
 	    key: "placeAnt",
-	    value: function placeAnt() {}
+	    value: function placeAnt(e) {}
+	  }, {
+	    key: "updateGame",
+	    value: function updateGame() {
+	      this.setState({ board: this.state.board });
+	    }
 	  }, {
 	    key: "renderRows",
 	    value: function renderRows() {
