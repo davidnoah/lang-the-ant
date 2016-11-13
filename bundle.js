@@ -21492,7 +21492,7 @@
 
 	var _tile2 = _interopRequireDefault(_tile);
 
-	var _langstonsAnt = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../langstonsAnt\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _langstonsAnt = __webpack_require__(175);
 
 	var _langstonsAnt2 = _interopRequireDefault(_langstonsAnt);
 
@@ -21513,12 +21513,19 @@
 	    var _this = _possibleConstructorReturn(this, (Grid.__proto__ || Object.getPrototypeOf(Grid)).call(this, props));
 
 	    _this.state = { board: new _langstonsAnt2.default() };
+	    _this.updateGame = _this.updateGame.bind(_this);
+	    _this.placeAnt = _this.placeAnt.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(Grid, [{
 	    key: "placeAnt",
-	    value: function placeAnt(e) {}
+	    value: function placeAnt(e) {
+	      var target = e.target.dataset.pos.split(",");
+	      var currentTile = this.state.board.grid[target[0]][target[1]];
+	      currentTile = currentTile ? false : true;
+	      this.updateGame();
+	    }
 	  }, {
 	    key: "updateGame",
 	    value: function updateGame() {
@@ -21542,7 +21549,7 @@
 	    value: function renderTiles(row) {
 	      var tiles = [];
 	      for (var i = 0; i < 100; i++) {
-	        tiles.push(_react2.default.createElement(_tile2.default, { active: this.props.board.grid[row][i], key: "tile " + (i + row) }));
+	        tiles.push(_react2.default.createElement(_tile2.default, { active: this.state.board.grid[row][i], key: [row, i], pos: [row, i] }));
 	      }
 	      return tiles;
 	    }
@@ -21602,7 +21609,7 @@
 	      } else {
 	        this.style.backgroundColor = "black";
 	      }
-	      return _react2.default.createElement("div", { className: "tile", style: this.style });
+	      return _react2.default.createElement("div", { className: "tile", style: this.style, "data-pos": this.props.pos });
 	    }
 	  }]);
 
@@ -21610,6 +21617,41 @@
 	}(_react2.default.Component);
 
 	module.exports = Tile;
+
+/***/ },
+/* 175 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Board = function () {
+	  function Board(props) {
+	    _classCallCheck(this, Board);
+
+	    this.grid = [];
+	    this.createGrid();
+	  }
+
+	  _createClass(Board, [{
+	    key: "createGrid",
+	    value: function createGrid() {
+	      for (var i = 0; i < 100; i++) {
+	        this.grid.push([]);
+	        for (var j = 0; j < 100; j++) {
+	          this.grid[i].push(false);
+	        }
+	      }
+	    }
+	  }]);
+
+	  return Board;
+	}();
+
+	module.exports = Board;
 
 /***/ }
 /******/ ]);

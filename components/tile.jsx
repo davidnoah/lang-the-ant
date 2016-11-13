@@ -13,7 +13,7 @@ class Tile extends React.Component {
       this.style.backgroundColor = "black";
     }
     return (
-      <div className='tile' style={this.style}></div>
+      <div className='tile' style={this.style} data-pos={this.props.pos}></div>
     );
   }
 }

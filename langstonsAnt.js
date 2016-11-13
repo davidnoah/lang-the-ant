@@ -1,6 +1,5 @@
 class Board {
   constructor(props) {
-    super(props);
     this.grid = [];
     this.createGrid();
   }

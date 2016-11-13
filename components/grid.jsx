@@ -6,10 +6,15 @@ class Grid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {board: new Board()};
+    this.updateGame = this.updateGame.bind(this);
+    this.placeAnt = this.placeAnt.bind(this);
   }
 
   placeAnt(e) {
-
+    let target = e.target.dataset.pos.split(",");
+    let currentTile = this.state.board.grid[target[0]][target[1]];
+    currentTile = currentTile ? false : true;
+    this.updateGame();
   }
 
   updateGame() {
@@ -29,7 +34,7 @@ class Grid extends React.Component {
   renderTiles(row) {
     let tiles = [];
     for (var i = 0; i < 100; i++) {
-      tiles.push(<Tile active={this.props.board.grid[row][i]} key={"tile " + (i + row)}/>);
+      tiles.push(<Tile active={this.state.board.grid[row][i]} key={[row, i]} pos={[row, i]}/>);
     }
     return tiles;
   }
