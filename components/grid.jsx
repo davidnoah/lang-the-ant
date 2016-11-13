@@ -13,7 +13,7 @@ class Grid extends React.Component {
   placeAnt(e) {
     let target = e.target.dataset.pos.split(",");
     let currentTile = this.state.board.grid[target[0]][target[1]];
-    currentTile = currentTile ? false : true;
+    this.state.board.grid[target[0]][target[1]] = currentTile ? false : true;
     this.updateGame();
   }
 

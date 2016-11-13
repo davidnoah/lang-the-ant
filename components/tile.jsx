@@ -3,17 +3,18 @@ import React from "react";
 class Tile extends React.Component {
   constructor(props) {
     super(props);
-    this.style = {backgroundColor: "black"};
+    this.state = {active: this.props.active};
   }
 
   render() {
-    if (this.props.active) {
-      this.style.backgroundColor = "white";
+    let className;
+    if (this.state.active) {
+      className = "tile:active";
     } else {
-      this.style.backgroundColor = "black";
+      className = "tile";
     }
     return (
-      <div className='tile' style={this.style} data-pos={this.props.pos}></div>
+      <div className={className} data-pos={this.props.pos}></div>
     );
   }
 }

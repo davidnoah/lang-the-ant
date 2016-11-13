@@ -21523,7 +21523,7 @@
 	    value: function placeAnt(e) {
 	      var target = e.target.dataset.pos.split(",");
 	      var currentTile = this.state.board.grid[target[0]][target[1]];
-	      currentTile = currentTile ? false : true;
+	      this.state.board.grid[target[0]][target[1]] = currentTile ? false : true;
 	      this.updateGame();
 	    }
 	  }, {
@@ -21597,19 +21597,20 @@
 
 	    var _this = _possibleConstructorReturn(this, (Tile.__proto__ || Object.getPrototypeOf(Tile)).call(this, props));
 
-	    _this.style = { backgroundColor: "black" };
+	    _this.state = { active: _this.props.active };
 	    return _this;
 	  }
 
 	  _createClass(Tile, [{
 	    key: "render",
 	    value: function render() {
-	      if (this.props.active) {
-	        this.style.backgroundColor = "white";
+	      var className = void 0;
+	      if (this.state.active) {
+	        className = "tile:active";
 	      } else {
-	        this.style.backgroundColor = "black";
+	        className = "tile";
 	      }
-	      return _react2.default.createElement("div", { className: "tile", style: this.style, "data-pos": this.props.pos });
+	      return _react2.default.createElement("div", { className: className, "data-pos": this.props.pos });
 	    }
 	  }]);
 
